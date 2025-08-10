@@ -9,5 +9,7 @@ Route::group([
 ], function () {
 
     Route::POST('/', [ShiftController::class, 'store']);
+    Route::POST('{shift}/request', [ShiftController::class, 'requestSlot']);
+
 
 });
