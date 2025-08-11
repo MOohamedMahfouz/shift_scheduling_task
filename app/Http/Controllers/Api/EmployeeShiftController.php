@@ -25,6 +25,10 @@ class EmployeeShiftController extends Controller
         try {
             DB::beginTransaction();
 
+            if ($employeeShift->status !== EmployeeShiftStatusEnum::PENDING->value) {
+                throw new \Exception('Shift request is not pending.', Response::HTTP_BAD_REQUEST);
+            }
+
             $shift = $this->shiftRepository->lockShift($shift);
 
             if ($shift->employees()->wherePivot('status', EmployeeShiftStatusEnum::APPROVED->value)->count() >= $shift->max_resources) {
