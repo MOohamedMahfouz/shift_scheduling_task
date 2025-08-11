@@ -19,7 +19,7 @@ This project includes concurrency-safe shift requests, resource slot reservation
 
 ## Concurrency Solution Overview
 
-To prevent race conditions during simultaneous employee shift requests, the API employs a **database transaction with row-level locking** using MySQL's `SELECT ... FOR UPDATE`:
+To prevent race conditions during simultaneous employee shift requests, the API employs a **database transaction with row-level locking** using MySQL's `LOCK FOR UPDATE`:
 
 - When an employee requests a shift, the system starts a transaction and locks the shift record.
 - If there is enough capacity (based on max employees), the request is stored as **pending**.
