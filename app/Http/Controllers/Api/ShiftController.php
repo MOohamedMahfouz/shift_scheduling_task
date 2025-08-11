@@ -6,6 +6,7 @@ use App\Data\EmployeeShiftData;
 use App\Data\ShiftData;
 use App\Enums\EmployeeShiftStatusEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StoreEmployeeShiftRequest;
 use App\Http\Requests\Api\StoreShiftRequest;
 use App\Http\Resources\ShiftResource;
 use App\Models\Shift;
@@ -39,7 +40,7 @@ class ShiftController extends Controller
         ]);
     }
 
-    public function requestSlot(Shift $shift, Request $request)
+    public function requestSlot(Shift $shift, StoreEmployeeShiftRequest $request)
     {
         try {
             DB::beginTransaction();

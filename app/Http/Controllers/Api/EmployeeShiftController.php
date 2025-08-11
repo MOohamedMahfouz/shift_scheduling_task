@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\EmployeeShift;
 use App\Models\Shift;
 use App\Repositories\EmployeeShiftRepository;
-use Illuminate\Http\Request;
+use App\Repositories\ShiftRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +17,7 @@ class EmployeeShiftController extends Controller
 {
     public function __construct(
         protected EmployeeShiftRepository $employeeShiftRepository,
+        protected ShiftRepository $shiftRepository,
     ) {}
 
     public function approveRequest(Shift $shift, EmployeeShift $employeeShift)
@@ -24,7 +25,7 @@ class EmployeeShiftController extends Controller
         try {
             DB::beginTransaction();
 
-            $shift = $shift->query()->lockForUpdate()->first();
+            $shift = $this->shiftRepository->lockShift($shift);
 
             if ($shift->employees()->wherePivot('status', EmployeeShiftStatusEnum::APPROVED->value)->count() >= $shift->max_resources) {
                 throw new \Exception('Cannot approve shift request. The maximum number of resources (' . $shift->max_resources . ') has already been allocated for this shift.');
