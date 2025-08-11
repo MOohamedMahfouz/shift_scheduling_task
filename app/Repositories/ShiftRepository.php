@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Enums\ShiftParticipantStatusEnum;
+use App\Enums\EmployeeShiftStatusEnum;
 use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;

@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum ShiftParticipantStatusEnum: string
+enum EmployeeShiftStatusEnum: string
 {
     case PENDING = 'pending';
     case APPROVED = 'approved';

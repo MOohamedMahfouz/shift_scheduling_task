@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Enums\ShiftParticipantStatusEnum;
+use App\Enums\EmployeeShiftStatusEnum;
 use App\Models\EmployeeShift;
 use App\Models\Shift;
 use App\Models\User;
@@ -23,8 +23,8 @@ class EmployeeShiftRepository extends BaseRepository
             ->whereBelongsTo($shift)
             ->where('employee_id', '=', $employee_id)
             ->whereIn('status', [
-                ShiftParticipantStatusEnum::PENDING->value,
-                ShiftParticipantStatusEnum::APPROVED->value
+                EmployeeShiftStatusEnum::PENDING->value,
+                EmployeeShiftStatusEnum::APPROVED->value
             ])
             ->where(function ($query) use ($shift) {
                 $query->whereHas('shift', function ($query) use ($shift) {

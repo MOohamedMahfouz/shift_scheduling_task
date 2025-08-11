@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\ShiftParticipantStatusEnum;
+use App\Enums\EmployeeShiftStatusEnum;
 use App\Models\Shift;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('users');
             $table->foreignIdFor(Shift::class)->constrained();
 
-            $table->enum('status', ShiftParticipantStatusEnum::values())
-                ->default(ShiftParticipantStatusEnum::PENDING->value);
+            $table->enum('status', EmployeeShiftStatusEnum::values())
+                ->default(EmployeeShiftStatusEnum::PENDING->value);
 
             $table->timestamp('reserved_at')->default(now());
             $table->timestamp('approved_at')->nullable();
