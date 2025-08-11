@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\EmployeeShiftController;
 use App\Http\Controllers\Api\ShiftController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -10,6 +10,5 @@ Route::group([
 
     Route::POST('/', [ShiftController::class, 'store']);
     Route::POST('{shift}/request', [ShiftController::class, 'requestSlot']);
-
-
+    Route::PUT('{shift}/approve/{employeeShift}', [EmployeeShiftController::class, 'approveRequest']);
 });

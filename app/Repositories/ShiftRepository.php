@@ -15,4 +15,9 @@ class ShiftRepository extends BaseRepository
     {
         return array_merge(parent::defaultFilters(), []);
     }
+
+    public function lockShift(Shift $shift)
+    {
+        return Shift::query()->where('id', '=', $shift->id)->lockForUpdate()->first();
+    }
 }

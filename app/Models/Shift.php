@@ -24,4 +24,9 @@ class Shift extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function employees()
+    {
+        return $this->belongsToMany(User::class, 'employee_shift', 'shift_id', 'employee_id');
+    }
 }
