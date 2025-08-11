@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "e872ebd2-d2ff-4b6a-bd03-24c1777402ef",
+		"name": "Shift Scheduling",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26814582"
+	},
+	"item": [
+		{
+			"name": "shifts",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"start_time\": \"2025-08-11 09:00:00\",\r\n    \"end_time\": \"2025-08-11 11:00:00\",\r\n    \"max_employees\": 2,\r\n    \"max_resources\": 2,\r\n    \"department_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/shifts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"shifts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request a slot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employee_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/shifts/51/request",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"shifts",
+								"51",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve a request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/shifts/1/approve/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"shifts",
+								"1",
+								"approve",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
