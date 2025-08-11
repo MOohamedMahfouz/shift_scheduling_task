@@ -81,20 +81,3 @@ This approach ensures that concurrent requests are processed safely without over
 > **Note:**  
 > For concurrency tests that spawn multiple parallel requests, a running Laravel server (`php artisan serve`) is required.  
 > Make sure the test database is persistent and not using in-memory SQLite, to ensure spawned processes can share the same DB state.
-
----
-
-## API Documentation
-
-### 1. Create Shift  
-**POST** `/api/shifts`
-
-Request body:
-```json
-{
-  "department_id": 1,
-  "start_time": "2025-08-11T09:00:00",
-  "end_time": "2025-08-11T11:00:00",
-  "max_employees": 3,
-  "max_resources": 3
-}
