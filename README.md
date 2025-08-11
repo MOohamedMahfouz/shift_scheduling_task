@@ -24,7 +24,7 @@ To prevent race conditions during simultaneous employee shift requests, the API 
 - When an employee requests a shift, the system starts a transaction and locks the shift record.
 - If there is enough capacity (based on max employees), the request is stored as **pending**.
 - If the shift is full, the request is rejected.
-- Pending requests are automatically rejected after 5 minutes (via a scheduled task or a cleanup job), releasing reserved slots.
+- Pending requests are automatically rejected after 5 minutes (via a scheduled task), releasing reserved slots.
 - Overlapping shifts are checked before allowing a request.
 
 This approach ensures that concurrent requests are processed safely without over-allocating resources.
@@ -45,8 +45,8 @@ This approach ensures that concurrent requests are processed safely without over
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/shift-scheduling-api.git
-    cd shift-scheduling-api
+    git clone https://github.com/MOohamedMahfouz/shift_scheduling_task.git
+    cd shift_scheduling_task
     ```
 
 2. Install dependencies:
@@ -61,7 +61,7 @@ This approach ensures that concurrent requests are processed safely without over
     php artisan migrate
     ```
 
-5. (Optional) Seed sample data:
+5. Seed sample data:
     ```bash
     php artisan db:seed
     ```
