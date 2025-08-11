@@ -29,9 +29,9 @@ class ExpirePendingShiftRequests extends Command
     public function handle()
     {
         $count = EmployeeShift::where('status', EmployeeShiftStatusEnum::PENDING->value)
-            ->where('reserved_at', '<', Carbon::now()->subMinutes(5))
+            ->where('reserved_at', '<=', Carbon::now()->subMinutes(5))
             ->update(['status' => EmployeeShiftStatusEnum::EXPIRED->value]);
 
-        $this->info("Rejected {$count} expired shift requests.");
+        $this->info("Expired {$count} pending shift requests.");
     }
 }
